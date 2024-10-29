@@ -4729,17 +4729,10 @@ jobs:
     needs:
     - coq
     - equations
-    - metacoq-utils
-    - metacoq-common
-    - metacoq-template-coq
-    - metacoq-pcuic
-    - metacoq-safechecker
-    - metacoq-template-pcuic
-    - metacoq-erasure
-    - metacoq-quotation
     - metacoq-safechecker-plugin
     - metacoq-erasure-plugin
     - metacoq-translations
+    - metacoq-quotation
     runs-on: ubuntu-latest
     steps:
     - name: Determine which commit to initially checkout
@@ -4790,38 +4783,6 @@ jobs:
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "equations"
     - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-utils'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-utils"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-common'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-common"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-template-coq'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-template-coq"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-pcuic'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-pcuic"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-safechecker'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-safechecker"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-template-pcuic'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-template-pcuic"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-erasure'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-erasure"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-quotation'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-quotation"
-    - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: metacoq-safechecker-plugin'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "metacoq-safechecker-plugin"
@@ -4833,6 +4794,10 @@ jobs:
       name: 'Building/fetching previous CI target: metacoq-translations'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "metacoq-translations"
+    - if: steps.stepCheck.outputs.status == 'built'
+      name: 'Building/fetching previous CI target: metacoq-quotation'
+      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
+        job "metacoq-quotation"
     - if: steps.stepCheck.outputs.status == 'built'
       name: Building/fetching current CI target
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
@@ -4903,10 +4868,6 @@ jobs:
     needs:
     - coq
     - equations
-    - metacoq-utils
-    - metacoq-common
-    - metacoq-template-coq
-    - metacoq-pcuic
     - metacoq-safechecker
     - metacoq-template-pcuic
     runs-on: ubuntu-latest
@@ -4959,22 +4920,6 @@ jobs:
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "equations"
     - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-utils'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-utils"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-common'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-common"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-template-coq'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-template-coq"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-pcuic'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-pcuic"
-    - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: metacoq-safechecker'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "metacoq-safechecker"
@@ -4990,15 +4935,8 @@ jobs:
     needs:
     - coq
     - equations
-    - metacoq-utils
-    - metacoq-common
-    - metacoq-template-coq
-    - metacoq-pcuic
-    - metacoq-safechecker
     - metacoq-template-pcuic
     - metacoq-erasure
-    - metacoq-quotation
-    - metacoq-safechecker-plugin
     runs-on: ubuntu-latest
     steps:
     - name: Determine which commit to initially checkout
@@ -5049,26 +4987,6 @@ jobs:
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "equations"
     - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-utils'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-utils"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-common'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-common"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-template-coq'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-template-coq"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-pcuic'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-pcuic"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-safechecker'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-safechecker"
-    - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: metacoq-template-pcuic'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "metacoq-template-pcuic"
@@ -5077,14 +4995,6 @@ jobs:
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "metacoq-erasure"
     - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-quotation'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-quotation"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-safechecker-plugin'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-safechecker-plugin"
-    - if: steps.stepCheck.outputs.status == 'built'
       name: Building/fetching current CI target
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "metacoq-erasure-plugin"
@@ -5092,8 +5002,6 @@ jobs:
     needs:
     - coq
     - equations
-    - metacoq-utils
-    - metacoq-common
     - metacoq-template-coq
     runs-on: ubuntu-latest
     steps:
@@ -5145,14 +5053,6 @@ jobs:
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "equations"
     - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-utils'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-utils"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-common'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-common"
-    - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: metacoq-template-coq'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "metacoq-template-coq"
@@ -5164,13 +5064,9 @@ jobs:
     needs:
     - coq
     - equations
-    - metacoq-utils
-    - metacoq-common
     - metacoq-template-coq
     - metacoq-pcuic
-    - metacoq-safechecker
     - metacoq-template-pcuic
-    - metacoq-erasure
     runs-on: ubuntu-latest
     steps:
     - name: Determine which commit to initially checkout
@@ -5221,14 +5117,6 @@ jobs:
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "equations"
     - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-utils'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-utils"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-common'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-common"
-    - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: metacoq-template-coq'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "metacoq-template-coq"
@@ -5237,17 +5125,9 @@ jobs:
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "metacoq-pcuic"
     - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-safechecker'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-safechecker"
-    - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: metacoq-template-pcuic'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "metacoq-template-pcuic"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-erasure'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-erasure"
     - if: steps.stepCheck.outputs.status == 'built'
       name: Building/fetching current CI target
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
@@ -5256,9 +5136,6 @@ jobs:
     needs:
     - coq
     - equations
-    - metacoq-utils
-    - metacoq-common
-    - metacoq-template-coq
     - metacoq-pcuic
     runs-on: ubuntu-latest
     steps:
@@ -5310,18 +5187,6 @@ jobs:
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "equations"
     - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-utils'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-utils"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-common'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-common"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-template-coq'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-template-coq"
-    - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: metacoq-pcuic'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "metacoq-pcuic"
@@ -5333,14 +5198,8 @@ jobs:
     needs:
     - coq
     - equations
-    - metacoq-utils
-    - metacoq-common
-    - metacoq-template-coq
-    - metacoq-pcuic
-    - metacoq-safechecker
     - metacoq-template-pcuic
-    - metacoq-erasure
-    - metacoq-quotation
+    - metacoq-safechecker
     runs-on: ubuntu-latest
     steps:
     - name: Determine which commit to initially checkout
@@ -5391,37 +5250,13 @@ jobs:
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "equations"
     - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-utils'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-utils"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-common'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-common"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-template-coq'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-template-coq"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-pcuic'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-pcuic"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-safechecker'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-safechecker"
-    - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: metacoq-template-pcuic'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "metacoq-template-pcuic"
     - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-erasure'
+      name: 'Building/fetching previous CI target: metacoq-safechecker'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-erasure"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-quotation'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-quotation"
+        job "metacoq-safechecker"
     - if: steps.stepCheck.outputs.status == 'built'
       name: Building/fetching current CI target
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
@@ -5430,7 +5265,6 @@ jobs:
     needs:
     - coq
     - equations
-    - metacoq-utils
     - metacoq-common
     runs-on: ubuntu-latest
     steps:
@@ -5482,10 +5316,6 @@ jobs:
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "equations"
     - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-utils'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-utils"
-    - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: metacoq-common'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "metacoq-common"
@@ -5497,11 +5327,8 @@ jobs:
     needs:
     - coq
     - equations
-    - metacoq-utils
-    - metacoq-common
     - metacoq-template-coq
     - metacoq-pcuic
-    - metacoq-safechecker
     runs-on: ubuntu-latest
     steps:
     - name: Determine which commit to initially checkout
@@ -5552,14 +5379,6 @@ jobs:
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "equations"
     - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-utils'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-utils"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-common'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-common"
-    - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: metacoq-template-coq'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "metacoq-template-coq"
@@ -5568,10 +5387,6 @@ jobs:
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "metacoq-pcuic"
     - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-safechecker'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-safechecker"
-    - if: steps.stepCheck.outputs.status == 'built'
       name: Building/fetching current CI target
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "metacoq-template-pcuic"
@@ -5579,16 +5394,7 @@ jobs:
     needs:
     - coq
     - equations
-    - metacoq-utils
-    - metacoq-common
     - metacoq-template-coq
-    - metacoq-pcuic
-    - metacoq-safechecker
-    - metacoq-template-pcuic
-    - metacoq-erasure
-    - metacoq-quotation
-    - metacoq-safechecker-plugin
-    - metacoq-erasure-plugin
     runs-on: ubuntu-latest
     steps:
     - name: Determine which commit to initially checkout
@@ -5639,45 +5445,9 @@ jobs:
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "equations"
     - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-utils'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-utils"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-common'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-common"
-    - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: metacoq-template-coq'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
         job "metacoq-template-coq"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-pcuic'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-pcuic"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-safechecker'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-safechecker"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-template-pcuic'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-template-pcuic"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-erasure'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-erasure"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-quotation'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-quotation"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-safechecker-plugin'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-safechecker-plugin"
-    - if: steps.stepCheck.outputs.status == 'built'
-      name: 'Building/fetching previous CI target: metacoq-erasure-plugin'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
-        job "metacoq-erasure-plugin"
     - if: steps.stepCheck.outputs.status == 'built'
       name: Building/fetching current CI target
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.16" --argstr
